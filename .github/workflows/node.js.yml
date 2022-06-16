@@ -24,39 +24,11 @@ jobs:
           cache: 'yarn'
       - name: Install deps
         run: yarn install
-
-  tests:
-    needs: [install-deps]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Running tests
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
       - name: Lint code
         run: yarn lint --max-warnings 0
       - name: Unit testing
         run: yarn test
       - name: E2E testing
         run: yarn test:e2e
-
-  build:
-    needs: [install-deps]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [16.x]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Running tests
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
       - name: Build app
         run: yarn run build
