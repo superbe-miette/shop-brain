@@ -1,0 +1,10 @@
+services:
+  api:
+    container_name: shop_brain_api
+    build: 
+      context: .
+      target: dev
+    volumes:
+      - .:/app
+    ports:
+      - 8000:$APP_PORT

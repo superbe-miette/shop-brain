@@ -1,0 +1,11 @@
+services:
+  api:
+    container_name: shop_brain_api
+    build: 
+      context: .
+      target: prod
+    volumes:
+      - .env:/app/.env
+      - .env.local:/app/.env.local
+    ports:
+      - 80:$APP_PORT
